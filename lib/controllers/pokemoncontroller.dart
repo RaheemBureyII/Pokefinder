@@ -4,6 +4,7 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
 import 'package:get/get_rx/src/rx_types/rx_types.dart';
 import 'package:getxprac/models/pokemon.dart';
@@ -16,17 +17,25 @@ List<Pokemon> pokemons = [
           "https://assets.pokemon.com/assets/cms2/img/pokedex/full/001.png",
       desc: "LOPSUM IPSUM BRRRRR")
 ].obs;
-
 String capitalize(String s) => s[0].toUpperCase() + s.substring(1);
 
 void fetchposts(String name) async {
   final url = "https://pokeapi.co/api/v2/pokemon/${name}";
+  int check = -1;
   try {
+    Get.defaultDialog(
+      title: "",
+      titlePadding: EdgeInsets.all(0),
+      backgroundColor: Color.fromRGBO(147, 200, 208, 1),
+      content: SpinKitRing(color: Colors.white),
+    );
     var response = await get(Uri.parse(url));
     var jsonData = jsonDecode(response.body);
     var desc = await getmoredata(jsonData["species"]["url"]);
     var id = jsonData["id"];
     var pokename = capitalize(jsonData["name"]);
+    check = pokemons.indexWhere((element) => element.name == pokename);
+    print(check);
 
     if (id < 10) {
       id = "00${id}";
@@ -35,9 +44,15 @@ void fetchposts(String name) async {
     }
     var imageurl =
         "https://assets.pokemon.com/assets/cms2/img/pokedex/full/${id}.png";
-
-    showdialog(pokename, imageurl, desc);
+    Get.back();
+    if (check != -1) {
+      Get.snackbar("Error", "You already added this pokemon");
+    } else {
+      showdialog(pokename, imageurl, desc);
+    }
   } catch (e) {
+    Get.back();
+    Get.snackbar("Error", "Thats a creature but that aint no pokemon");
     print(e.toString());
   }
 }
