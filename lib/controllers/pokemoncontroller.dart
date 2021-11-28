@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'dart:async';
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
@@ -15,6 +16,7 @@ List<Pokemon> pokemons = [
           "https://assets.pokemon.com/assets/cms2/img/pokedex/full/001.png",
       desc: "LOPSUM IPSUM BRRRRR")
 ].obs;
+
 String capitalize(String s) => s[0].toUpperCase() + s.substring(1);
 
 void fetchposts(String name) async {
@@ -80,7 +82,9 @@ void showdialog(name, imageurl, desc) {
             ),
           ),
           Image(
-            image: NetworkImage(imageurl),
+            image: NetworkImage(
+              imageurl,
+            ),
             width: 100,
           ),
           MaterialButton(
