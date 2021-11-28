@@ -57,21 +57,42 @@ class Dashboard extends StatelessWidget {
                     borderRadius:
                         BorderRadius.only(topLeft: Radius.circular(60))),
                 height: MediaQuery.of(context).size.height * 0.8,
-                child: Obx(() => ListView.builder(
-                      shrinkWrap: true,
-                      itemBuilder: (BuildContext context, index) {
-                        return InkWell(
-                          onTap: () {
-                            Get.toNamed("/pokemoninfo",
-                                arguments: {"index": index});
-                          },
-                          child: PokeListWidget(
-                            index: index,
-                          ),
-                        );
-                      },
-                      itemCount: pokemons.length,
-                    )),
+                child: Obx(() => !pokemons.isEmpty
+                    ? ListView.builder(
+                        shrinkWrap: true,
+                        itemBuilder: (BuildContext context, index) {
+                          return InkWell(
+                            onTap: () {
+                              Get.toNamed("/pokemoninfo",
+                                  arguments: {"index": index});
+                            },
+                            child: PokeListWidget(
+                              index: index,
+                            ),
+                          );
+                        },
+                        itemCount: pokemons.length,
+                      )
+                    : Center(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(
+                              Icons.catching_pokemon,
+                              size: 100,
+                              color: Color.fromRGBO(147, 200, 208, 1),
+                            ),
+                            Text(
+                              "I see you dont wanna be the very best",
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 20,
+                                color: Color.fromRGBO(147, 200, 208, 1),
+                              ),
+                            ),
+                          ],
+                        ),
+                      )),
               )
             ],
           ),
