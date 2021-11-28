@@ -17,24 +17,36 @@ class PokeListWidget extends StatelessWidget {
       child: Container(
           padding: EdgeInsets.all(10),
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              CircleAvatar(
-                radius: 30,
-                backgroundColor: Colors.white,
-                backgroundImage: NetworkImage(pokemons[index].imageurl),
+              Row(
+                children: [
+                  CircleAvatar(
+                    radius: 30,
+                    backgroundColor: Colors.white,
+                    backgroundImage: NetworkImage(pokemons[index].imageurl),
+                  ),
+                  SizedBox(
+                    width: 20,
+                  ),
+                  Text(
+                    pokemons[index].name,
+                    style: TextStyle(
+                      fontSize: 30,
+                      fontWeight: FontWeight.bold,
+                      color: Color.fromRGBO(147, 200, 208, 1),
+                    ),
+                  ),
+                ],
               ),
-              SizedBox(
-                width: 20,
-              ),
-              Text(
-                pokemons[index].name,
-                style: TextStyle(
-                  fontSize: 30,
-                  fontWeight: FontWeight.bold,
-                  color: Color.fromRGBO(147, 200, 208, 1),
-                ),
-              )
+              IconButton(
+                  onPressed: () {
+                    pokemons.removeAt(index);
+                  },
+                  icon: Icon(
+                    Icons.delete_outline,
+                    color: Color.fromRGBO(147, 200, 208, 1),
+                  ))
             ],
           )),
     );

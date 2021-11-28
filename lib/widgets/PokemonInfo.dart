@@ -30,9 +30,12 @@ class PokemonInfo extends StatelessWidget {
               ),
             ),
             Image(image: NetworkImage(pokemons[index].imageurl)),
-            Text(
-              pokemons[index].desc,
-              style: TextStyle(color: Colors.white, fontSize: 20),
+            Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Text(
+                pokemons[index].desc,
+                style: TextStyle(color: Colors.white, fontSize: 20),
+              ),
             )
           ],
         ),

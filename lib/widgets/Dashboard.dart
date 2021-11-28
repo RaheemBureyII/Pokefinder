@@ -33,12 +33,16 @@ class Dashboard extends StatelessWidget {
                     controller: pokename,
                     onSubmitted: (name) {
                       fetchposts(name.toLowerCase());
+                      pokename.text = "";
                     },
+                    cursorColor: Colors.white,
                     decoration: InputDecoration(
-                      filled: false,
-                      fillColor: Colors.white,
-                      //border: InputBorder(borderSide: BorderSide())
-                    ),
+                        hintText: "Enter Pokemon name here",
+                        focusedBorder: OutlineInputBorder(
+                          borderSide:
+                              const BorderSide(color: Colors.white, width: 1.0),
+                          borderRadius: BorderRadius.circular(15.0),
+                        )),
                   ),
                 ],
               ),
