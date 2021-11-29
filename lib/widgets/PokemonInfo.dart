@@ -29,7 +29,9 @@ class PokemonInfo extends StatelessWidget {
                 fontWeight: FontWeight.bold,
               ),
             ),
-            Image(image: NetworkImage(pokemons[index].imageurl)),
+            Hero(
+                tag: "location-img-${pokemons[index].name}",
+                child: Image(image: NetworkImage(pokemons[index].imageurl))),
             Padding(
               padding: const EdgeInsets.all(20.0),
               child: Text(

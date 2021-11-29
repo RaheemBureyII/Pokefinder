@@ -21,10 +21,13 @@ class PokeListWidget extends StatelessWidget {
             children: [
               Row(
                 children: [
-                  CircleAvatar(
-                    radius: 30,
-                    backgroundColor: Colors.white,
-                    backgroundImage: NetworkImage(pokemons[index].imageurl),
+                  Hero(
+                    tag: "location-img-${pokemons[index].name}",
+                    child: CircleAvatar(
+                      radius: 30,
+                      backgroundColor: Colors.white,
+                      backgroundImage: NetworkImage(pokemons[index].imageurl),
+                    ),
                   ),
                   SizedBox(
                     width: 20,

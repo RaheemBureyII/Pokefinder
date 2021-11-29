@@ -23,14 +23,12 @@ class Dashboard extends StatelessWidget {
           child: Column(
             children: [
               Container(
+                margin: EdgeInsets.only(top: 50),
                 width: double.infinity,
                 padding: EdgeInsets.all(20),
                 height: MediaQuery.of(context).size.height * 0.2,
                 child: Column(
                   children: [
-                    SizedBox(
-                      height: 30,
-                    ),
                     TextField(
                       controller: pokename,
                       onSubmitted: (name) {

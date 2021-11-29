@@ -15,7 +15,8 @@ List<Pokemon> pokemons = [
       name: "Bulbasaur",
       imageurl:
           "https://assets.pokemon.com/assets/cms2/img/pokedex/full/001.png",
-      desc: "LOPSUM IPSUM BRRRRR")
+      desc:
+          "For some time after its birth, it grows by gaining nourishment from the seed on its back.")
 ].obs;
 String capitalize(String s) => s[0].toUpperCase() + s.substring(1);
 
@@ -96,11 +97,14 @@ void showdialog(name, imageurl, desc) {
               fontWeight: FontWeight.bold,
             ),
           ),
-          Image(
-            image: NetworkImage(
-              imageurl,
+          Hero(
+            tag: "location-img-$name",
+            child: Image(
+              image: NetworkImage(
+                imageurl,
+              ),
+              width: 100,
             ),
-            width: 100,
           ),
           MaterialButton(
             onPressed: () {
